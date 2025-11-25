@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expert Digital & IA - Montage, Web, Marketing</title>
+    <!-- Import de la police Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Icones FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* --- 1. CONFIGURATION GÉNÉRALE --- */
+        :root {
+            --bg-color: #EBF7FC;
+            --dark-blue: #0B1D45;
+            --green-btn: #00C06B;
+            --gold: #D4AF37;
+            --white: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--dark-blue);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            overflow-x: hidden;
+            /* Correction pour Google Translate qui ajoute parfois une marge haute */
+            top: 0 !important;
+        }
+
+        /* Masquer la barre Google Translate du haut pour garder le site propre */
+        .skiptranslate iframe {
+            display: none !important;
+        }
+        body {
+            top: 0px !important; 
+        }
+
+        h1, h2, h3 {
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--dark-blue);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* --- 2. HEADER / MENU (MODIFIÉ POUR LOGO & LANGUE) --- */
+        header {
+            background-color: var(--dark-blue);
+            padding: 10px 0;
+            color: white;
+            position: relative;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Style du Logo Image */
+        .logo-img {
+            height: 50px; /* Ajustez ici si votre logo est trop gros ou petit */
+            width: auto;
+            display: block;
+        }
+
+        /* Zone droite du header (Langue + Menu) */
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .menu-btn {
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Style du sélecteur de langue Google */
+        #google_translate_element {
+            margin-right: 10px;
+        }
+        
+        /* Personnalisation simple du bouton Google Translate */
+        .goog-te-combo {
+            padding: 5px;
+            border-radius: 5px;
+            border: none;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        /* --- 3. SECTION HERO (PHOTO SOLO) --- */
+        .hero-solo {
+            background: linear-gradient(180deg, #ffffff 0%, var(--bg-color) 100%);
+            padding-top: 40px;
+            padding-bottom: 0px; 
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            width: 100%;
+        }
+
+        .photo-container-center {
+            position: relative;
+            width: 100%; 
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            z-index: 1;
+        }
+
+        .balsama-img-solo {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: drop-shadow(0px 10px 20px rgba(0,0,0,0.15));
+            -webkit-mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
+            mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
+        }
+
+        /* --- 4. SECTION PRIX --- */
+        .pricing-section {
+            padding: 60px 20px;
+            background-color: var(--bg-color);
+            position: relative;
+            z-index: 2;
+        }
+
+        .price-card {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .price-main {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--dark-blue);
+            margin: 10px 0;
+        }
+
+        .price-old {
+            text-decoration: line-through;
+            color: #7f8c8d;
+            font-size: 1.2rem;
+            margin-right: 10px;
+        }
+
+        .discount-badge {
+            color: var(--dark-blue);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .promo-text {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 1.3rem;
+            margin: 20px 0;
+        }
+
+        .service-list {
+            text-align: left;
+            margin: 30px auto;
+            display: inline-block;
+            color: #556;
+            padding-left: 0;
+        }
+
+        .service-list li {
+            margin-bottom: 10px;
+            list-style: none;
+        }
+
+        .btn-buy {
+            background-color: var(--green-btn);
+            color: white;
+            padding: 18px 50px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(0, 192, 107, 0.4);
+            transition: transform 0.2s;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .btn-buy:hover {
+            transform: scale(1.05);
+        }
+
+        /* --- 5. SECTION COMMENT ÇA MARCHE --- */
+        .how-it-works {
+            padding: 50px 20px;
+        }
+
+        .laptop-container {
+            margin: 30px auto;
+            max-width: 600px;
+            position: relative;
+        }
+        
+        .laptop-mockup {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 10px;
+        }
+
+        .feature-list {
+            text-align: left;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        /* --- 6. SECTION EXPERT --- */
+        .expert-section {
+            padding: 50px 20px;
+        }
+
+        .expert-photo-container {
+            width: 250px;
+            height: 250px;
+            margin: 0 auto 30px auto;
+            border-radius: 50%;
+            border: 4px solid var(--gold);
+            padding: 5px;
+            overflow: hidden;
+        }
+
+        .expert-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .bio-text {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1rem;
+            color: #334;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: black;
+            color: white;
+            padding: 40px 20px;
+            font-size: 0.9rem;
+        }
+
+        .social-icons i {
+            font-size: 1.5rem;
+            margin: 0 10px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="nav-container">
+            <!-- LOGO (Remplace le texte) -->
+            <div class="logo">
+                <!-- Assurez-vous que logo.png est dans le même dossier -->
+                <img src="logo.png" alt="Mon Logo" class="logo-img">
+            </div>
+
+            <!-- DROITE : SÉLECTEUR LANGUE + MENU -->
+            <div class="header-right">
+                <!-- Sélecteur de langue Google Translate -->
+                <div id="google_translate_element"></div>
+                
+                <div class="menu-btn">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- SECTION 1: HERO (PHOTO SOLO) -->
+    <section class="hero-solo">
+        <div class="photo-container-center">
+            <!-- VOTRE PHOTO -->
+            <img src="./balsama.png" alt="Balsama Expert" class="balsama-img-solo">
+        </div>
+    </section>
+
+    <!-- SECTION 2: PRIX / OFFRE -->
+    <section class="pricing-section">
+        <div class="container">
+            <div class="price-card">
+                <div class="price-main">335,00 €</div>
+                <div>
+                    <span class="price-old">au lieu de 447,00 €</span>
+                    <span class="discount-badge">25% de réduction</span>
+                </div>
+
+                <div class="promo-text">
+                    😉 Offre de lancement !
+                </div>
+
+                <h3>accès à vie aux services</h3>
+
+                <ul class="service-list">
+                    <li>📱 <strong>Développement Web</strong> (Site vitrine ou E-commerce)</li>
+                    <li>💻 <strong>Montage Vidéo</strong> (Reels, TikTok, YouTube)</li>
+                    <li>📚 <strong>Formation IA</strong> & Automatisation</li>
+                    <li>🏆 <strong>Certificat de réussite</strong> & Support 24/7</li>
+                </ul>
+
+                <br>
+                <a href="#contact" class="btn-buy">ACHETER</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: COMMENT ÇA MARCHE -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2>Comment ça marche ?</h2>
+            <p>
+                💻😉 Une <strong>méthode complète</strong>, simple et claire pour digitaliser votre activité grâce à l'IA et la vidéo :
+            </p>
+
+            <h3>🎥 +200 techniques vidéos & IA</h3>
+
+            <div class="laptop-container">
+                <img src="https://img.freepik.com/vecteurs-libre/ordinateur-portable-icone-isometrique-code-programme-developpement-logiciels-applications-programmation-neon-sombre_39422-971.jpg" alt="Laptop" class="laptop-mockup">
+            </div>
+
+            <div class="feature-list">
+                <p>📄 <strong>Des fiches explicatives</strong> avec le plan d'action.</p>
+                <p>🤖 <strong>Des Prompts IA</strong> prêts à copier-coller.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: L'EXPERT -->
+    <section class="expert-section">
+        <div class="container">
+            <div class="expert-photo-container">
+                <img src="https://via.placeholder.com/300.png?text=Balsama" alt="Le Professeur" class="expert-photo">
+            </div>
+
+            <h2>Le spécialiste</h2>
+            
+            <div class="bio-text">
+                <p>Je suis expert en solutions digitales et Intelligence Artificielle depuis 2020.</p>
+                <p>J'accompagne les entreprises et les créateurs de contenu pour automatiser leurs tâches, monter des vidéos dynamiques et créer des sites web performants.</p>
+                <p>Ma méthode est le résultat de plusieurs années de pratique sur le terrain pour faciliter votre croissance.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <p>Home | Mon Blog | Contact</p>
+            <p>Soutenir mon travail</p>
+            <div class="social-icons">
+                <i class="fa-brands fa-tiktok"></i>
+                <i class="fa-brands fa-instagram"></i>
+                <i class="fa-brands fa-youtube"></i>
+                <i class="fa-brands fa-linkedin"></i>
+            </div>
+            <br>
+            <p style="font-size: 0.7rem; color: #888;">Termes et conditions | Politique de confidentialité</p>
+        </div>
+    </footer>
+
+    <!-- SCRIPT DE TRADUCTION GOOGLE (FR, EN, MG) -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'fr', // Langue de base du site
+                includedLanguages: 'fr,en,mg', // Français, Anglais, Malgache
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+</html>
