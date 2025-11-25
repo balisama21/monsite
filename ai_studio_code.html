@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balsama - Expert Digital & IA</title>
+    <!-- Police Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Icones FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* --- 1. CONFIGURATION GÉNÉRALE --- */
+        :root {
+            --bg-color: #EBF7FC;
+            --dark-blue: #0B1D45;
+            --green-btn: #00C06B;
+            --gold: #D4AF37;
+            --active-lang-bg: #4c1d95;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--dark-blue);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            overflow-x: hidden;
+            top: 0 !important;
+        }
+
+        /* Masquer interface Google Translate */
+        .goog-te-banner-frame, .goog-logo-link, .goog-te-gadget, .goog-tooltip { display: none !important; }
+        body { top: 0px !important; }
+
+        h1, h2, h3 { color: var(--dark-blue); font-weight: 700; margin-bottom: 1rem; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; text-align: center; }
+
+        /* --- 2. HEADER MODERNE (Alignement Parfait) --- */
+        header {
+            background-color: var(--dark-blue);
+            padding: 10px 0;
+            color: white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 1000;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+            height: 70px;
+        }
+
+        /* LOGO */
+        .logo-container { flex: 1; display: flex; align-items: center; }
+        .logo-img { max-height: 55px; width: auto; display: block; }
+
+        /* DROITE DU HEADER */
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            height: 100%;
+        }
+
+        /* STYLE COMMUN POUR BOUTONS (Langue & Menu) */
+        .header-btn-style {
+            background: white;
+            color: var(--dark-blue);
+            height: 40px; /* HAUTEUR IDENTIQUE */
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+            border: none;
+        }
+        .header-btn-style:hover { transform: translateY(-2px); }
+
+        /* Spécifique Langue */
+        .lang-selector-container { position: relative; }
+        .lang-btn { padding: 0 12px; font-weight: 600; font-size: 1.1rem; gap: 8px; }
+        .lang-btn i { font-size: 0.7rem; color: #555; }
+
+        /* Spécifique Menu Hamburger */
+        .menu-btn { width: 40px; font-size: 1.2rem; }
+
+        /* MENU DÉROULANT LANGUE */
+        .lang-dropdown {
+            position: absolute;
+            top: 50px; right: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            width: 150px;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 999;
+        }
+        .lang-dropdown.show { display: flex; animation: fadeIn 0.2s ease; }
+        .lang-option { padding: 10px 15px; display: flex; align-items: center; gap: 10px; cursor: pointer; color: #333; font-size: 0.9rem; border-bottom: 1px solid #f5f5f5; }
+        .lang-option:last-child { border-bottom: none; }
+        .lang-option:hover { background-color: #f0f0f0; }
+        .lang-option.active { background-color: var(--active-lang-bg); color: white; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- 3. SECTION HERO (Photo Solo) --- */
+        .hero-solo {
+            background: linear-gradient(180deg, #ffffff 0%, var(--bg-color) 100%);
+            padding-top: 40px;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+        .photo-container-center {
+            position: relative;
+            width: 100%; max-width: 600px;
+            margin: 0 auto; display: flex; justify-content: center; align-items: flex-end;
+        }
+        .balsama-img-solo {
+            width: 100%; height: auto; display: block;
+            filter: drop-shadow(0px 10px 20px rgba(0,0,0,0.15));
+            -webkit-mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
+            mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
+        }
+
+        /* --- 4. SECTION PRIX --- */
+        .pricing-section { padding: 60px 20px; background-color: var(--bg-color); }
+        .price-card { max-width: 500px; margin: 0 auto; }
+        .price-main { font-size: 3rem; font-weight: 700; margin: 10px 0; }
+        .price-old { text-decoration: line-through; color: #7f8c8d; font-size: 1.2rem; margin-right: 10px; }
+        .discount-badge { font-weight: 700; font-size: 1.2rem; }
+        .promo-text { display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 1.3rem; margin: 20px 0; }
+        
+        .service-list { text-align: left; margin: 30px auto; display: inline-block; padding-left: 0; }
+        .service-list li { margin-bottom: 10px; list-style: none; }
+
+        .btn-buy {
+            background-color: var(--green-btn); color: white; padding: 18px 50px;
+            font-size: 1.2rem; font-weight: 700; border: none; border-radius: 50px;
+            text-decoration: none; display: inline-block; margin-top: 20px;
+            box-shadow: 0 10px 25px rgba(0, 192, 107, 0.4);
+        }
+
+        /* --- 5. SECTION COMMENT ÇA MARCHE --- */
+        .how-it-works { padding: 50px 20px; }
+        .laptop-container { margin: 30px auto; max-width: 600px; position: relative; }
+        .laptop-mockup { width: 100%; height: auto; display: block; border-radius: 10px; }
+        .feature-list { text-align: left; display: inline-block; margin-top: 20px; }
+
+        /* --- 6. SECTION EXPERT --- */
+        .expert-section { padding: 50px 20px; }
+        .expert-photo-container {
+            width: 250px; height: 250px; margin: 0 auto 30px auto;
+            border-radius: 50%; border: 4px solid var(--gold); padding: 5px; overflow: hidden;
+        }
+        .expert-photo { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+        .bio-text { max-width: 700px; margin: 0 auto; font-size: 1rem; color: #334; }
+
+        /* --- FOOTER --- */
+        footer { background: black; color: white; padding: 40px 20px; font-size: 0.9rem; }
+        .social-icons i { font-size: 1.5rem; margin: 0 10px; color: white; }
+
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="nav-container">
+            <!-- LOGO -->
+            <div class="logo-container">
+                <img src="logo.png" alt="Logo Balsama" class="logo-img">
+            </div>
+
+            <div class="header-right">
+                
+                <!-- SÉLECTEUR LANGUE (Style unifié) -->
+                <div class="lang-selector-container">
+                    <div class="lang-btn header-btn-style" onclick="toggleDropdown()">
+                        <span id="current-flag">🇫🇷</span> 
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+
+                    <div class="lang-dropdown" id="lang-dropdown">
+                        <div class="lang-option" onclick="changeLanguage('fr', '🇫🇷')" id="opt-fr"><span>🇫🇷</span> Français</div>
+                        <div class="lang-option" onclick="changeLanguage('mg', '🇲🇬')" id="opt-mg"><span>🇲🇬</span> Malagasy</div>
+                        <div class="lang-option" onclick="changeLanguage('en', '🇬🇧')" id="opt-en"><span>🇬🇧</span> English</div>
+                    </div>
+                </div>
+
+                <!-- MENU HAMBURGER (Style unifié) -->
+                <div class="menu-btn header-btn-style">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ÉLÉMENT CACHÉ GOOGLE -->
+    <div id="google_translate_element"></div>
+
+    <!-- SECTION 1: HERO (Photo Solo) -->
+    <section class="hero-solo">
+        <div class="photo-container-center">
+            <img src="./balsama.png" alt="Balsama Expert" class="balsama-img-solo">
+        </div>
+    </section>
+
+    <!-- SECTION 2: PRIX / OFFRE -->
+    <section class="pricing-section">
+        <div class="container">
+            <div class="price-card">
+                <div class="price-main">335,00 €</div>
+                <div>
+                    <span class="price-old">au lieu de 447,00 €</span>
+                    <span class="discount-badge">25% de réduction</span>
+                </div>
+
+                <div class="promo-text">
+                    😉 Offre de lancement !
+                </div>
+
+                <h3>accès à vie aux services</h3>
+
+                <ul class="service-list">
+                    <li>📱 <strong>Développement Web</strong> (Site vitrine ou E-commerce)</li>
+                    <li>💻 <strong>Montage Vidéo</strong> (Reels, TikTok, YouTube)</li>
+                    <li>📚 <strong>Formation IA</strong> & Automatisation</li>
+                    <li>🏆 <strong>Certificat de réussite</strong> & Support 24/7</li>
+                </ul>
+
+                <br>
+                <a href="#contact" class="btn-buy">ACHETER</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: COMMENT ÇA MARCHE -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2>Comment ça marche ?</h2>
+            <p>
+                💻😉 Une <strong>méthode complète</strong>, simple et claire pour digitaliser votre activité grâce à l'IA et la vidéo :
+            </p>
+
+            <h3>🎥 +200 techniques vidéos & IA</h3>
+
+            <div class="laptop-container">
+                <img src="https://img.freepik.com/vecteurs-libre/ordinateur-portable-icone-isometrique-code-programme-developpement-logiciels-applications-programmation-neon-sombre_39422-971.jpg" alt="Laptop" class="laptop-mockup">
+            </div>
+
+            <div class="feature-list">
+                <p>📄 <strong>Des fiches explicatives</strong> avec le plan d'action.</p>
+                <p>🤖 <strong>Des Prompts IA</strong> prêts à copier-coller.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: L'EXPERT -->
+    <section class="expert-section">
+        <div class="container">
+            <div class="expert-photo-container">
+                <img src="https://via.placeholder.com/300.png?text=Balsama" alt="Le Professeur" class="expert-photo">
+            </div>
+
+            <h2>Le spécialiste</h2>
+            
+            <div class="bio-text">
+                <p>Je suis expert en solutions digitales et Intelligence Artificielle depuis 2020.</p>
+                <p>J'accompagne les entreprises et les créateurs de contenu pour automatiser leurs tâches, monter des vidéos dynamiques et créer des sites web performants.</p>
+                <p>Ma méthode est le résultat de plusieurs années de pratique sur le terrain pour faciliter votre croissance.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <p>Home | Mon Blog | Contact</p>
+            <p>Soutenir mon travail</p>
+            <div class="social-icons">
+                <i class="fa-brands fa-tiktok"></i>
+                <i class="fa-brands fa-instagram"></i>
+                <i class="fa-brands fa-youtube"></i>
+                <i class="fa-brands fa-linkedin"></i>
+            </div>
+            <br>
+            <p style="font-size: 0.7rem; color: #888;">© 2024 Balsama Digital</p>
+        </div>
+    </footer>
+
+    <!-- LOGIQUE JAVASCRIPT -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({ pageLanguage: 'fr', includedLanguages: 'fr,en,mg', autoDisplay: false }, 'google_translate_element');
+        }
+
+        function toggleDropdown() { document.getElementById("lang-dropdown").classList.toggle("show"); }
+        
+        window.onclick = function(event) {
+            if (!event.target.matches('.lang-btn') && !event.target.matches('.lang-btn *')) {
+                var dropdowns = document.getElementsByClassName("lang-dropdown");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) openDropdown.classList.remove('show');
+                }
+            }
+        }
+
+        function changeLanguage(langCode, flagEmoji) {
+            document.getElementById("current-flag").innerText = flagEmoji;
+            document.querySelectorAll('.lang-option').forEach(el => el.classList.remove('active'));
+            document.getElementById('opt-' + langCode).classList.add('active');
+            var frame = document.querySelector('.goog-te-combo');
+            if(frame) { frame.value = langCode; frame.dispatchEvent(new Event('change')); }
+            else { document.cookie = "googtrans=/auto/" + langCode; document.cookie = "googtrans=/auto/" + langCode + "; domain=." + document.domain; location.reload(); }
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            var cookies = document.cookie.split(';');
+            var currentLang = 'fr';
+            for(var i=0; i < cookies.length; i++) {
+                var c = cookies[i].trim();
+                if (c.indexOf("googtrans=") == 0) {
+                    var val = c.substring("googtrans=".length, c.length);
+                    if(val.includes('/en')) currentLang = 'en';
+                    if(val.includes('/mg')) currentLang = 'mg';
+                }
+            }
+            if(currentLang === 'en') { document.getElementById("current-flag").innerText = '🇬🇧'; document.getElementById('opt-en').classList.add('active'); }
+            else if(currentLang === 'mg') { document.getElementById("current-flag").innerText = '🇲🇬'; document.getElementById('opt-mg').classList.add('active'); }
+            else { document.getElementById('opt-fr').classList.add('active'); }
+        });
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+</html>
